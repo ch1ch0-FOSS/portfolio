@@ -1,0 +1,33 @@
+# Test workflow for Forgejo Actions
+# This workflow verifies that the Actions runner is working correctly
+
+name: Test Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: podman
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run test
+        run: |
+          echo "=== Forgejo Actions Test ==="
+          echo "Hostname: $(hostname)"
+          echo "OS: $(uname -a)"
+          echo "Podman available: $(which podman)"
+          echo "Test completed successfully!"
+
+      - name: Verify podman
+        run: podman --version
+
+  hello:
+    runs-on: podman
+    steps:
+      - run: echo "Hello from Forgejo Actions with Podman!"
