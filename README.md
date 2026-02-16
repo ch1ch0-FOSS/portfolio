@@ -35,28 +35,56 @@ I am actively seeking opportunities in:
 ### 🔧 [T480 Control Plane Workstation](https://github.com/ch1ch0-foss/labs-t480)
 **Enterprise-grade Linux workstation management**
 
-Demonstrates complete workstation administration including:
-- System hardening and security configuration
-- Vi-centric development environment setup
-- Automation with Ansible and CI/CD pipelines
-- Monitoring and observability implementation
-- Professional documentation and runbooks
+The T480 serves as the **control plane** that manages the srv-m1m data plane server:
 
-**Technologies**: Fedora Linux, Sway, Ansible, Forgejo, Prometheus, Grafana
+```
+T480 (Control Plane) ──Ansible──► srv-m1m (Data Plane)
+     │                                    │
+     ├── OpenCode (AI)                   ├── Forgejo
+     ├── Beads (Tasks)                   ├── PostgreSQL
+     └── Monitoring                       ├── Prometheus
+                                           ├── Grafana
+                                           ├── Vaultwarden
+                                           └── DMR (AI)
+```
+
+**Key Demonstrations**:
+- Control-plane / data-plane architecture design
+- Ansible automation for infrastructure management
+- Vi-centric development environment
+- Self-hosted AI integration (OpenCode + DMR)
+- Security hardening and Tailscale VPN
+
+**Technologies**: Fedora Linux, Sway, Ansible, OpenCode, DMR, MCP, Beads, Tailscale
 
 ---
 
 ### 🚀 [SRV-M1M Asahi Infrastructure Platform](https://github.com/ch1ch0-foss/labs-srv-m1m)
 **High-performance ARM infrastructure platform**
 
-Showcases modern infrastructure deployment on Apple Silicon:
-- Asahi Linux deployment and optimization
-- Database administration with PostgreSQL
-- Git server management with Forgejo
-- Container orchestration and service management
-- Enterprise security and networking
+Apple M1 running Fedora Asahi Linux as the data and service hub:
 
-**Technologies**: Apple Silicon, Asahi Linux, PostgreSQL, Forgejo, Prometheus
+**Services Running**:
+| Service | Port | Purpose |
+|---------|------|---------|
+| Forgejo | 3000 | Git server + CI/CD |
+| PostgreSQL | 5432 | Database + pgvector |
+| Prometheus | 9090 | Metrics collection |
+| Grafana | 3001 | Visualization |
+| Vaultwarden | 8222 | Secrets management |
+| DMR | 12434 | Local AI/LLM |
+| MCP Server | 8082 | AI context protocol |
+| nginx | 80/443 | Reverse proxy |
+| Syncthing | 8384 | File sync |
+
+**Key Demonstrations**:
+- ARM infrastructure on Apple Silicon
+- 10+ production services via Ansible
+- Tailscale zero-trust networking
+- Complete monitoring stack
+- Self-hosted AI platform
+
+**Technologies**: Apple M1, Asahi Linux, PostgreSQL, Prometheus, Grafana, Vaultwarden, DMR, Podman, Tailscale
 
 ---
 
@@ -74,28 +102,36 @@ Collection of open source work and community contributions demonstrating:
 ## Technical Expertise
 
 ### System Administration
-- **Linux Distributions**: Fedora, Ubuntu, RHEL family
-- **Security**: Firewall configuration, SSH hardening, access control
-- **Performance**: System optimization, resource management
-- **Backup & Recovery**: Automated backup strategies, disaster recovery
+- **Linux Distributions**: Fedora, RHEL, Ubuntu, Asahi Linux (ARM)
+- **Security**: firewalld, SSH hardening, SELinux, Tailscale VPN
+- **Performance**: System optimization, resource monitoring, tuning
+- **Backup**: Syncthing, rsync, automated backup strategies
 
 ### Infrastructure Automation
-- **Configuration Management**: Ansible (advanced), role-based architecture
-- **CI/CD**: Forgejo Actions, pipeline design and implementation
-- **Version Control**: Git workflows, branching strategies, code review
-- **Container Technologies**: Docker, container orchestration
+- **Ansible**: Roles, playbooks, inventories, idempotent configuration
+- **GitOps**: Infrastructure as Code, version controlled deployments
+- **CI/CD**: Forgejo Actions, multi-stage pipelines
+- **Containers**: Podman (rootless), nginx reverse proxy
+
+### Databases
+- **PostgreSQL**: Installation, configuration, user management
+- **pgvector**: Vector extension for AI/RAG workloads
 
 ### Monitoring & Observability
-- **Metrics Collection**: Prometheus configuration and optimization
-- **Visualization**: Grafana dashboards and alerting
-- **Log Management**: Centralized logging and analysis
-- **System Monitoring**: Resource utilization and performance tracking
+- **Prometheus**: Metrics collection, scrape configs, alerting
+- **Grafana**: Dashboards, data sources, alerting rules
+- **node_exporter**: System-level metrics
 
-### Development Practices
-- **Documentation-Driven**: ADRs, runbooks, comprehensive documentation
-- **Vi-Centric Workflow**: Vim/Neovim configuration and productivity
-- **Testing**: Automated testing strategies and implementation
-- **Quality Assurance**: Code review, linting, and standards
+### Development Tools
+- **Editors**: Vim/Neovim with custom configuration
+- **Shell**: bash, zsh, tmux
+- **CLI**: ripgrep, fd, fzf, bat, jq, navi
+
+### AI/ML Platform (Self-Hosted)
+- **DMR**: Docker Model Runner for local LLM
+- **Models**: Qwen3 8B, 4B, 0.6B
+- **MCP**: Model Context Protocol
+- **RAG**: PostgreSQL + pgvector
 
 ## Professional Values
 
@@ -143,12 +179,8 @@ After successful experience as a Barber, I'm making a deliberate transition into
 - **Portfolio Website**: [www.ch1ch0-foss.me](https://www.ch1ch0-foss.me)
 
 ### 📋 **Resume**
-Multiple resume variants available for different roles:
-- **Linux System Administrator** version
-- **Infrastructure Engineer** version  
-- **Platform Engineer** version
 
-Download resumes from the [resume/](resume/) directory.
+View my detailed resume in the [root of this repository](resume.md).
 
 ## Why Hire Me
 
